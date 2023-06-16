@@ -3,30 +3,40 @@ import axios from "axios";
 
     const Zipsearch = ((props) => {
         const[zipCode, setZipCode] = useState(11210);
-        
+        const [city, setCity] = useState("");
+        const [inputValue, setInputValue] = useState("");
         useEffect(()=> {
             async function fetchZipCode(){
-                try {
-                    setZipCode(props.zipcode);
-                    const area = await axios.get('https://zip-api.eu/api/v1/info/US-${zipCode}');
-                } catch (error) {
-                    console.error(error);
-                    
-                }
+            try {
+                const area = await axios.get(`https://zip-api.eu/api/v1/info/US-${zipCode}`);
+                console.log(area);
+                setCity(area.data.place_name)
+                return area
+            } catch (error) {
+                console.error(error);
+                
             }
-            fetchZipCode()
-        },[])
-    console.log(props);
+        }
+            fetchZipCode(); 
+        })
+        const handleSubmit = () => {
+            setZipCode(inputValue);
+            console.log(inputValue)
+            console.log(city)
+
+        }
+
+
     return (
         <div>
         <label>
-        Zip Code: <input name="zipcode" />
+        Zip Code: <input type='number' value={inputValue}  name="zipcode" onChange={(e) => setInputValue(e.target.value)}/>
+
+        <button onClick={handleSubmit}>submit
+        </button>
+
       </label>
-            {/* <h1>{props.zipcode}</h1>
-            
-            {area.map(pokemon=>{3
-                return <p key={pokemon.url}>{pokemon.name}</p>
-            })} */}
+      <p>The city of the zipcode: {zipCode} is {city} </p>
         </div>
 
     );

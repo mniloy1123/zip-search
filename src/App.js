@@ -8,7 +8,7 @@ function App() {
       {/* <label>
         Zip Code: <input name="zipcode" />
       </label> */}
-      <Zipsearch zipcode={11235} />
+      <Zipsearch />
     </div>
   );
 }
