@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
+
     const Zipsearch = ((props) => {
         const[zipCode, setZipCode] = useState(11210);
         const [city, setCity] = useState("");
@@ -30,13 +31,18 @@ import axios from "axios";
     return (
         <div>
         <label>
-        Zip Code: <input type='number' value={inputValue}  name="zipcode" onChange={(e) => setInputValue(e.target.value)}/>
+        {/*Zip Code: <input type='number' value={inputValue}  name="zipcode" onChange={(e) => setInputValue(e.target.value)}/> */}
+        <input type="text" class="form-control" placeholder="Zip Code" aria-label="Zip" value={inputValue} onChange={(e) => setInputValue(e.target.value)}></input>
+        {/*<button 
+            onClick={handleSubmit}>Submit
+    </button>*/}
+        <button type="button" class="btn btn-outline-primary" onClick={handleSubmit}>Sumbit </button>
 
-        <button onClick={handleSubmit}>submit
-        </button>
 
-      </label>
-      <p>The city of the zipcode: {zipCode} is {city} </p>
+        </label> 
+
+
+        <p>The city of the zipcode: <strong><mark>{zipCode}</mark></strong> is <strong><mark>{city}</mark></strong> </p>
         </div>
 
     );
